@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # SPDX-License-Identifier: MIT
 #
-# The Snipinator project requires contributions made to this file be licensed
+# The ChangeGuard project requires contributions made to this file be licensed
 # under the MIT license or a compatible open source license. See LICENSE.md for
 # the license text.
 """Check changes in a directory, before => after. Ignores new files."""

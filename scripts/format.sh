@@ -16,6 +16,7 @@ find ./changeguard -type f -name "*.md.jinja2" -print0 | while IFS= read -r -d '
 done
 
 bash scripts/prettier.sh --parser markdown "${PWD}/README.md.jinja2" --write
+bash scripts/prettier.sh --parser markdown "${PWD}/LICENSE.md" --write
 
 yapf -r ./changeguard -i
 yapf -r ./scripts -i

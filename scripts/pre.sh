@@ -15,7 +15,6 @@ bash scripts/run-all-examples.sh
 bash scripts/run-all-tests.sh
 bash scripts/format.sh
 bash scripts/type-check.sh
-bash scripts/generate-licenses.sh
 bash scripts/generate-readme.sh
 bash scripts/run-wheel-smoke-test.sh
 bash scripts/run-edit-mode-smoke-test.sh

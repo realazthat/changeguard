@@ -19,7 +19,8 @@ SOURCE: `README.md.jinja2`.
 | Master  | [![Build and Test][1]][2]  | [![since tagged][6]][10]  |                           | ![last commit][7]  |
 | Develop | [![Build and Test][11]][2] | [![since tagged][12]][13] | [![since tagged][15]][16] | ![last commit][14] |
 
-CLI to embed snippets from your {python,other} codebases into your `README.md`.
+CLI to check if your repository/directory files have changed over the span of a
+script.
 
 ## What
 
@@ -64,9 +65,7 @@ pip install git+https://github.com/realazthat/changeguard.git@v0.0.0
 
 - For running `pre.sh` (Linux-like environment).
   - Requires `pyenv`, or an exact matching version of python as in
-    `.python-version` (which is currently
-    `3.8.0
-`).
+    [`.python-version`](./.python-version).
   - `jq`, ([installation](https://jqlang.github.io/jq/)) required for
     [yq](https://github.com/kislyuk/yq), which is itself required for our
     `README.md` generation, which uses `tomlq` (from the
