@@ -27,3 +27,5 @@ fi
 # the workflow. If changes occurred, they should be staged and pre.sh should be
 # run again.
 STEP=post bash scripts/changeguard.sh
+
+echo -e "${GREEN}Success: pre.sh${NC}"
