@@ -66,15 +66,16 @@ pip install git+https://github.com/realazthat/changeguard.git@v0.0.0
 - For running `pre.sh` (Linux-like environment).
   - Requires `pyenv`, or an exact matching version of python as in
     [`.python-version`](./.python-version).
+  - `nvm` for prettier (markdown formatting).
+  - `bash`, `grep`, `xxd`, `git`, `xxhash` (for scripts/workflows/tests).
   - `jq`, ([installation](https://jqlang.github.io/jq/)) required for
     [yq](https://github.com/kislyuk/yq), which is itself required for our
     `README.md` generation, which uses `tomlq` (from the
     [yq](https://github.com/kislyuk/yq) package) to include version strings from
     `pyproject.toml`.
-  - `bash`, `grep`, `xxd`, `git` (for tests).
-  - Requires nodejs (for act).
-  - Requires Go (to run act).
-  - docker (for act).
+  - Requires `nodejs` (for act).
+  - Requires `go` (to run act).
+  - `docker` (for act).
 
 ### Commit Process
 
