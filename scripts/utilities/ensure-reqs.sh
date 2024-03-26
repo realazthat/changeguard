@@ -14,21 +14,21 @@ if [[ -z "${TOML}" ]]; then
   ${EXIT} 1
 fi
 
-
 if [[ "${EXTRA}" == "dev" ]]; then
-  OUTPUT_REQUIREMENTS_FILE="${PWD}/.cache/scripts/dev-requirements.txt"
-  SYNC_TOUCH_FILE="${PWD}/.cache/scripts/dev-pip-sync-touched"
+  :
 elif [[ "${EXTRA}" == "prod" ]]; then
-  OUTPUT_REQUIREMENTS_FILE="${PWD}/.cache/scripts/prod-requirements.txt"
-  SYNC_TOUCH_FILE="${PWD}/.cache/scripts/prod-pip-sync-touched"
+  :
 else
   echo -e "${RED}EXTRA should be either dev or prod${NC}"
   [[ $(realpath "$0"||true) == $(realpath "${BASH_SOURCE[0]}"||true) ]] && EXIT="exit" || EXIT="return"
   ${EXIT} 1
 fi
 
-export FILE="${PROJ_PATH}/pyproject.toml"
-export TOUCH_FILE=".cache/scripts/${EXTRA}-requirements.touch"
+SYNC_TOUCH_FILE="${PWD}/.cache/scripts/${EXTRA}-requirements.touch"
+OUTPUT_REQUIREMENTS_FILE="${PWD}/.cache/scripts/${EXTRA}-requirements.txt"
+
+export FILE=${TOML}
+export TOUCH_FILE=${SYNC_TOUCH_FILE}
 if bash "${PROJ_PATH}/scripts/utilities/is_not_dirty.sh"; then
   echo -e "${GREEN}Syncing is not needed${NC}"
   [[ $(realpath "$0"||true) == $(realpath "${BASH_SOURCE[0]}"||true) ]] && EXIT="exit" || EXIT="return"
@@ -45,12 +45,13 @@ python -m piptools compile \
     "${TOML}"
 
 pip-sync "${OUTPUT_REQUIREMENTS_FILE}"
-export FILE="${PROJ_PATH}/pyproject.toml"
-export TOUCH_FILE=".cache/scripts/${EXTRA}-requirements.touch"
+
+export FILE=${TOML}
+export TOUCH_FILE=${SYNC_TOUCH_FILE}
 bash "${PROJ_PATH}/scripts/utilities/mark_dirty.sh"
 
-export FILE="${PROJ_PATH}/pyproject.toml"
-export TOUCH_FILE=".cache/scripts/${EXTRA}-requirements.touch"
+export FILE=${TOML}
+export TOUCH_FILE=${SYNC_TOUCH_FILE}
 if bash "${PROJ_PATH}/scripts/utilities/is_not_dirty.sh"; then
   :
 else
