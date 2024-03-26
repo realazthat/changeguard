@@ -9,8 +9,8 @@ source "${SCRIPT_DIR}/utilities/common.sh"
 # Check that no changes occurred to files through the workflow.
 STEP=pre bash scripts/changeguard.sh
 
-EXTRA=dev bash scripts/pin-extra-reqs.sh
-EXTRA=prod bash scripts/pin-extra-reqs.sh
+EXTRA=dev bash scripts/utilities/pin-extra-reqs.sh
+EXTRA=prod bash scripts/utilities/pin-extra-reqs.sh
 bash scripts/run-all-examples.sh
 bash scripts/run-all-tests.sh
 bash scripts/format.sh

@@ -3,7 +3,7 @@
 set -e -x -v -u -o pipefail
 
 SCRIPT_DIR=$(realpath "$(dirname "${BASH_SOURCE[0]}")")
-source "${SCRIPT_DIR}/utilities/common.sh"
+source "${SCRIPT_DIR}/common.sh"
 
 VENV_PATH=".cache/scripts/.venv" source "${PROJ_PATH}/scripts/utilities/ensure-venv.sh"
 TOML=${PROJ_PATH}/pyproject.toml EXTRA=dev source "${PROJ_PATH}/scripts/utilities/ensure-reqs.sh"
@@ -48,7 +48,7 @@ python -m piptools compile --generate-hashes \
 echo -e "${GREEN}Generated ${PINNED_REQ_FILE}${NC}"
 
 echo -e "${GREEN}Altering pyproject.toml${NC}"
-python scripts/pin-extra-reqs.py \
+python "${PROJ_PATH}/scripts/utilities/pin-extra-reqs.py" \
   --reqs "${PINNED_REQ_FILE}" \
   --extra "${EXTRA}" \
   --toml "${TOML_FILE}"
