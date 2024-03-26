@@ -12,11 +12,11 @@ TOML=${PROJ_PATH}/pyproject.toml EXTRA=dev source "${PROJ_PATH}/scripts/utilitie
 # find all *.md.jinja2 paths in changeguard
 find ./changeguard -type f -name "*.md.jinja2" -print0 | while IFS= read -r -d '' MARKDOWN_TEMPLATE; do
   MARKDOWN_TEMPLATE=$(realpath "${MARKDOWN_TEMPLATE}")
-  bash scripts/prettier.sh --parser markdown "${MARKDOWN_TEMPLATE}" --write
+  bash scripts/utilities/prettier.sh --parser markdown "${MARKDOWN_TEMPLATE}" --write
 done
 
-bash scripts/prettier.sh --parser markdown "${PWD}/README.md.jinja2" --write
-bash scripts/prettier.sh --parser markdown "${PWD}/LICENSE.md" --write
+bash scripts/utilities/prettier.sh --parser markdown "${PWD}/README.md.jinja2" --write
+bash scripts/utilities/prettier.sh --parser markdown "${PWD}/LICENSE.md" --write
 
 yapf -r ./changeguard -i
 yapf -r ./scripts -i
