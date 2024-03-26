@@ -18,7 +18,7 @@ export NVM_DIR=${NVM_DIR:-"${HOME}/.nvm"}
 mkdir -p "${PRETTIER_BUILD_PATH}"
 cd "${PRETTIER_BUILD_PATH}"
 
-if ! npx --no-install prettier --version; then
+if ! npx --no-install prettier --version &>/dev/null; then
   echo -e "${BLUE}Prettier is not installed${NC}"
 
   # sourcing nvm.sh when .nvmrc is present can return an error with no message
