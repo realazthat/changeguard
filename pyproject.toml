@@ -95,7 +95,8 @@ dev = [
   "xmltodict==0.13.0",
   "yapf==0.40.2",
   "yq==3.2.3",
-  "zipp==3.18.1"
+  "zipp==3.18.1",
+  "twine"
 ]
 
 [project.scripts]
