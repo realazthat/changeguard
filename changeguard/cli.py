@@ -16,10 +16,13 @@
 import argparse
 import json
 import sys
+import warnings
 from pathlib import Path
+from shutil import get_terminal_size
 from typing import List
 
 from rich.console import Console
+from rich_argparse import RichHelpFormatter
 from typing_extensions import Dict
 
 from . import _build_version
@@ -68,10 +71,29 @@ def _AddHashingArgs(parser: argparse.ArgumentParser):
       f'Command to hash files with. Default is {json.dumps(_DEFAULT_HASH_CMD)}')
 
 
+class _CustomRichHelpFormatter(RichHelpFormatter):
+
+  def __init__(self, *args, **kwargs):
+    if kwargs.get('width') is None:
+      width, _ = get_terminal_size()
+      if width == 0:
+        warnings.warn('Terminal width was set to 0, using default width of 80.',
+                      RuntimeWarning,
+                      stacklevel=0)
+        # This is the default in get_terminal_size().
+        width = 80
+      # This is what HelpFormatter does to the width returned by
+      # `get_terminal_size()`.
+      width -= 2
+      kwargs['width'] = width
+    super().__init__(*args, **kwargs)
+
+
 def main():
   console = Console(file=sys.stderr)
   try:
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(description=__doc__,
+                                     formatter_class=_CustomRichHelpFormatter)
 
     parser.add_argument('--version', action='version', version=_build_version)
 
