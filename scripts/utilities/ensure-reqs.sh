@@ -7,7 +7,15 @@ source "${SCRIPT_DIR}/common.sh"
 
 TOML=${TOML:-""}
 EXTRA=${EXTRA:-""}
+DEV_VENV_PATH=${DEV_VENV_PATH:-}
+TARGET_VENV_PATH=${TARGET_VENV_PATH:-}
 
+if [[ $(realpath "$0"||true) == $(realpath "${BASH_SOURCE[0]}"||true) ]]; then
+  :
+else
+  echo -e "${RED}This script should NOT be sourced, execute it like a normal script.${NC}"
+  return 1
+fi
 if [[ -z "${TOML}" ]]; then
   echo -e "${RED}TOML is not set${NC}"
   [[ $(realpath "$0"||true) == $(realpath "${BASH_SOURCE[0]}"||true) ]] && EXIT="exit" || EXIT="return"
@@ -23,6 +31,25 @@ else
   [[ $(realpath "$0"||true) == $(realpath "${BASH_SOURCE[0]}"||true) ]] && EXIT="exit" || EXIT="return"
   ${EXIT} 1
 fi
+if [[ -z "${DEV_VENV_PATH}" ]]; then
+  echo -e "${RED}DEV_VENV_PATH is not set${NC}"
+  [[ $(realpath "$0"||true) == $(realpath "${BASH_SOURCE[0]}"||true) ]] && EXIT="exit" || EXIT="return"
+  ${EXIT} 1
+fi
+if [[ -z "${TARGET_VENV_PATH}" ]]; then
+  echo -e "${RED}TARGET_VENV_PATH is not set${NC}"
+  [[ $(realpath "$0"||true) == $(realpath "${BASH_SOURCE[0]}"||true) ]] && EXIT="exit" || EXIT="return"
+  ${EXIT} 1
+fi
+################################################################################
+# Get the target python executable, where we want to install all the
+# requirements to.
+VENV_PATH=${TARGET_VENV_PATH} source "${PROJ_PATH}/scripts/utilities/ensure-venv.sh"
+PYTHON_EXECUTABLE=$(command -v python)
+################################################################################
+# Activate the dev venv to install pip-tools to etc.
+VENV_PATH=${DEV_VENV_PATH} source "${PROJ_PATH}/scripts/utilities/ensure-venv.sh"
+################################################################################
 
 SYNC_TOUCH_FILE="${PWD}/.cache/scripts/${EXTRA}-requirements.touch"
 OUTPUT_REQUIREMENTS_FILE="${PWD}/.cache/scripts/${EXTRA}-requirements.txt"
@@ -44,7 +71,8 @@ python -m piptools compile \
     -o "${OUTPUT_REQUIREMENTS_FILE}" \
     "${TOML}"
 
-pip-sync "${OUTPUT_REQUIREMENTS_FILE}"
+python -m piptools sync "${OUTPUT_REQUIREMENTS_FILE}" \
+  --python-executable "${PYTHON_EXECUTABLE}"
 
 export FILE=${TOML}
 export TOUCH_FILE=${SYNC_TOUCH_FILE}
@@ -60,4 +88,4 @@ else
   ${EXIT} 1
 fi
 
-echo -e "${GREEN}Synced requirements${NC}"
+echo -e "${GREEN}Synced requirements for ${EXTRA}, using ${OUTPUT_REQUIREMENTS_FILE}${NC}"

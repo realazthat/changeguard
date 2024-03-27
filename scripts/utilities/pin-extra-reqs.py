@@ -1,10 +1,4 @@
 # -*- coding: utf-8 -*-
-# SPDX-License-Identifier: MIT
-#
-# The ChangeGuard project requires contributions made to this file be licensed
-# under the MIT license or a compatible open source license. See LICENSE.md for
-# the license text.
-
 import argparse
 from pathlib import Path
 from typing import List, Tuple
@@ -74,18 +68,28 @@ for i in range(len(lines)):
   else:
     existing_dependencies.append(stripped_line)
 
+if 'project' not in pyproject_data:
+  raise ValueError('Invalid pyproject.toml file, missing "project" section.')
 project_item = pyproject_data['project']
 if not isinstance(project_item, tomlkit.items.Table):
   raise ValueError(
       f'Invalid pyproject.toml file, expected "project" to be a table. Got {type(project_item)}.'
   )
 
+if 'optional-dependencies' not in project_item:
+  raise ValueError(
+      'Invalid pyproject.toml file, expected "project" to have an entry for "optional-dependencies".'
+  )
 opt_deps = project_item['optional-dependencies']
 if not isinstance(opt_deps, tomlkit.items.Table):
   raise ValueError(
       f'Invalid pyproject.toml file, expected "project.optional-dependencies" to be a table. Got {type(opt_deps)}.'
   )
 
+if extra_name not in opt_deps:
+  raise ValueError(
+      f'Invalid pyproject.toml file, expected "project.optional-dependencies" to contain {extra_name}.'
+  )
 toml_extra_dependencies = opt_deps[extra_name]
 if not isinstance(toml_extra_dependencies, tomlkit.items.Array):
   raise ValueError(
