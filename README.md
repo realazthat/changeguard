@@ -107,6 +107,10 @@ These instructions are for maintainers of the project.
    `bash scripts/deploy-to-pypi.sh`.
 7. Push to GitHub: Push the commit and tags to GitHub with `git push` and
    `git push --tags`.
+8. `git checkout develop && git merge master` The `--no-ff` option adds a commit
+   to the master branch for the merge, so refork the develop branch from the
+   master branch.
+9. `git push origin develop` Push the develop branch to GitHub.
 
 [1]:
   https://github.com/realazthat/changeguard/actions/workflows/build-and-test.yml/badge.svg?branch=master
