@@ -151,7 +151,8 @@ def main():
       ignore_metas: Dict[str, List[str]] = {}
       ignores = _ConstructIgnorePathSpecs(ignorefiles=list(args.ignorefile),
                                           ignorelines=list(args.ignoreline),
-                                          ignore_metas=ignore_metas)
+                                          ignore_metas=ignore_metas,
+                                          cwd=args.directory)
       return Hash(hash_cmd=args.hash_cmd,
                   directory=args.directory,
                   method=args.method,

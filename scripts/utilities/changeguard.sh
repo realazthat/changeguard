@@ -8,7 +8,7 @@
 set -e -x -v -u -o pipefail
 
 SCRIPT_DIR=$(realpath "$(dirname "${BASH_SOURCE[0]}")")
-source "${SCRIPT_DIR}/utilities/common.sh"
+source "${SCRIPT_DIR}/common.sh"
 
 VENV_PATH="${PWD}/.cache/scripts/.venv" source "${PROJ_PATH}/scripts/utilities/ensure-venv.sh"
 TOML=${PROJ_PATH}/pyproject.toml EXTRA=dev \
@@ -23,8 +23,6 @@ AUDIT_FILE=${AUDIT_FILE:-"${PWD}/.cache/scripts/check-changes-audit.yaml"}
 AUDIT_LOG=${AUDIT_LOG:-"${PWD}/.cache/scripts/check-changes-audit.log"}
 
 function do_hash() {
-  # Add --ignoreline flags if this check is blocking a commit and you are
-  # certain that those file changes are not things that should be staged.
   python -m changeguard.cli hash \
     --ignorefile "${PROJ_PATH}/.gitignore" \
     --ignoreline .trunk --ignoreline .git \
@@ -50,7 +48,7 @@ elif [[ "${STEP}" == "post" ]]; then
     echo -e "${GREEN}No changes occurred${NC}"
   else
     echo -e "${RED}Error auditing files.${NC}"
-    echo -e "${RED}If a post-stage change occurred, you can ignore it by adding the ignore to the flags in do_audit() in ${BASH_SOURCE[0]}.${NC}"
+    echo -e "${RED}If a post-stage change occurred, you can ignore it by adding it to ${PROJ_PATH}/.gitignore or ${PROJ_PATH}/.changeguard-gitignore.${NC}"
     exit 1
   fi
 else

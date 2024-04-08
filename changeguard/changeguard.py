@@ -194,21 +194,47 @@ def _CheckFailures(*, failures: List[_Failure], directory: Path,
   sys.exit(1)
 
 
-def _ConstructIgnorePathSpecs(
-    *, ignorefiles: List[TextIO], ignorelines: List[str],
-    ignore_metas: Dict[str, List[str]]) -> List[pathspec.PathSpec]:
+def _FindIgnoreFile(cwd: Path) -> Optional[Path]:
+  """
+  Search for a '.changeguard-ignore' file in the current working directory and its ancestors.
 
-  ignores = []
-  ignorefile: TextIO
-  for ignorefile in ignorefiles:
-    ignorefile_contents = ignorefile.read()
-    ignorefile_lines: List[str] = ignorefile_contents.splitlines()
-    ignore_metas[ignorefile.name] = ignorefile_lines
-    ignores.append(
-        pathspec.PathSpec.from_lines('gitwildmatch', ignorefile_lines))
-  ignore_metas['~ignorelines'] = ignorelines
-  ignores.append(pathspec.PathSpec.from_lines('gitwildmatch', ignorelines))
-  return ignores
+  Returns:
+      Optional[Path]: The path to the found '.changeguard-ignore' file, or None
+        if not found.
+  """
+  for directory in [cwd] + list(cwd.parents):
+    ignorefile = directory / '.changeguard-ignore'
+    if ignorefile.exists() and ignorefile.is_file():
+      return ignorefile
+  return None
+
+
+def _ConstructIgnorePathSpecs(*, ignorefiles: List[TextIO],
+                              ignorelines: List[str],
+                              ignore_metas: Dict[str, List[str]],
+                              cwd: Path) -> List[pathspec.PathSpec]:
+
+  found_ignore_file: Optional[TextIO] = None
+  try:
+    found_ignore_file_path: Optional[Path] = _FindIgnoreFile(cwd=cwd)
+    if found_ignore_file_path is not None:
+      found_ignore_file = found_ignore_file_path.open('r')
+      ignorefiles.append(found_ignore_file)
+
+    ignores = []
+    ignorefile: TextIO
+    for ignorefile in ignorefiles:
+      ignorefile_contents = ignorefile.read()
+      ignorefile_lines: List[str] = ignorefile_contents.splitlines()
+      ignore_metas[ignorefile.name] = ignorefile_lines
+      ignores.append(
+          pathspec.PathSpec.from_lines('gitwildmatch', ignorefile_lines))
+    ignore_metas['~ignorelines'] = ignorelines
+    ignores.append(pathspec.PathSpec.from_lines('gitwildmatch', ignorelines))
+    return ignores
+  finally:
+    if found_ignore_file is not None:
+      found_ignore_file.close()
 
 
 def Hash(*, hash_cmd: str, directory: Path, method: _MethodLiteral,
@@ -335,7 +361,8 @@ def TestListPaths(*, directory: Path, ignorefiles: List[TextIO],
 
   ignores = _ConstructIgnorePathSpecs(ignorefiles=ignorefiles,
                                       ignorelines=ignorelines,
-                                      ignore_metas={})
+                                      ignore_metas={},
+                                      cwd=directory)
   initial_iterdir_paths = _GetPathsViaIterDir(directory=directory,
                                               ignores=ignores)
   git_paths = _GetPathsViaGit(directory=directory, ignores=ignores)

@@ -7,7 +7,7 @@ source "${SCRIPT_DIR}/utilities/common.sh"
 
 
 # Check that no changes occurred to files through the workflow.
-STEP=pre bash scripts/changeguard.sh
+STEP=pre bash scripts/utilities/changeguard.sh
 
 EXTRA=dev bash scripts/utilities/pin-extra-reqs.sh
 EXTRA=prod bash scripts/utilities/pin-extra-reqs.sh
@@ -26,6 +26,6 @@ fi
 # If running in GitHub Actions, check that no changes occurred to files through
 # the workflow. If changes occurred, they should be staged and pre.sh should be
 # run again.
-STEP=post bash scripts/changeguard.sh
+STEP=post bash scripts/utilities/changeguard.sh
 
 echo -e "${GREEN}Success: pre.sh${NC}"
