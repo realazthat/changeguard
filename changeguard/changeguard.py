@@ -27,10 +27,7 @@ _MethodLiteral = Literal['initial_iterdir', 'git', 'auto']
 
 
 def _Ignore(*, rel_path: Path, ignores: List[pathspec.PathSpec]) -> bool:
-  for ignore in ignores:
-    if ignore.match_file(str(rel_path)):
-      return True
-  return False
+  return any(ignore.match_file(str(rel_path)) for ignore in ignores)
 
 
 def _Execute(*,
