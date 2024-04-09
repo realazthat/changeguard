@@ -30,6 +30,8 @@ repository/directory change over the course of a precommit script.
 ## Features
 
 - Can use any sha256sum-like command (uses xxhash by default).
+- Use `.changeguard-ignore` to ignore files that should not be checked for
+  changes.
 
 ## Getting Started
 
