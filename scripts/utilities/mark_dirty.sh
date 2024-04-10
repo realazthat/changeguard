@@ -9,8 +9,8 @@ DIRTY_METHOD=${DIRTY_METHOD:-"xxhash"}
 FILE=${FILE-}
 TOUCH_FILE=${TOUCH_FILE-}
 
-if [[ -z "${TOUCH_FILE:-}" ]]; then
-  echo -e "${RED}TOUCH_FILE is not set${NC}"
+if [[ -z "${FILE:-}" ]]; then
+  echo -e "${RED}FILE is not set${NC}"
   [[ $0 == "${BASH_SOURCE[0]}" ]] && EXIT="exit" || EXIT="return"
   ${EXIT} 1
 fi

@@ -7,7 +7,7 @@ set -e -x -v -u -o pipefail
 # NOTE: Beware, that all paths must be absolute, otherwise the script will fail.
 
 SCRIPT_DIR=$(realpath "$(dirname "${BASH_SOURCE[0]}")")
-source "${SCRIPT_DIR}/utilities/common.sh"
+source "${SCRIPT_DIR}/common.sh"
 
 # CURRENT_PWD=${PWD}
 PRETTIER_BUILD_PATH=${NODE_APP_PATH:-${PWD}/.cache/scripts/prettier-build}
@@ -18,7 +18,9 @@ export NVM_DIR=${NVM_DIR:-"${HOME}/.nvm"}
 mkdir -p "${PRETTIER_BUILD_PATH}"
 cd "${PRETTIER_BUILD_PATH}"
 
-if ! npx --no-install prettier --version &>/dev/null; then
+if npx --no-install prettier --version &>/dev/null; then
+  echo -e "${BLUE}Prettier is installed${NC}"
+else
   echo -e "${BLUE}Prettier is not installed${NC}"
 
   # sourcing nvm.sh when .nvmrc is present can return an error with no message

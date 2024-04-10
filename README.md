@@ -30,6 +30,8 @@ repository/directory change over the course of a precommit script.
 ## Features
 
 - Can use any sha256sum-like command (uses xxhash by default).
+- Use `.changeguard-ignore` to ignore files that should not be checked for
+  changes.
 
 ## Getting Started
 
@@ -54,7 +56,7 @@ repository/directory change over the course of a precommit script.
 pip install changeguard
 
 # Install from git (https://github.com/realazthat/changeguard)
-pip install git+https://github.com/realazthat/changeguard.git@v0.2.0
+pip install git+https://github.com/realazthat/changeguard.git@v0.3.0
 ```
 
 ### Use
@@ -107,6 +109,10 @@ These instructions are for maintainers of the project.
    `bash scripts/deploy-to-pypi.sh`.
 7. Push to GitHub: Push the commit and tags to GitHub with `git push` and
    `git push --tags`.
+8. `git checkout develop && git merge master` The `--no-ff` option adds a commit
+   to the master branch for the merge, so refork the develop branch from the
+   master branch.
+9. `git push origin develop` Push the develop branch to GitHub.
 
 [1]:
   https://github.com/realazthat/changeguard/actions/workflows/build-and-test.yml/badge.svg?branch=master
@@ -116,21 +122,21 @@ These instructions are for maintainers of the project.
 [4]: https://img.shields.io/pypi/v/changeguard
 [5]: https://pypi.org/project/changeguard/
 [6]:
-  https://img.shields.io/github/commits-since/realazthat/changeguard/v0.2.0/master
+  https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.0/master
 [7]: https://img.shields.io/github/last-commit/realazthat/changeguard/master
 [8]: https://img.shields.io/pypi/pyversions/changeguard
 [9]:
   https://img.shields.io/github/languages/top/realazthat/changeguard.svg?&cacheSeconds=28800
 [10]:
-  https://github.com/realazthat/changeguard/compare/v0.2.0...master
+  https://github.com/realazthat/changeguard/compare/v0.3.0...master
 [11]:
   https://github.com/realazthat/changeguard/actions/workflows/build-and-test.yml/badge.svg?branch=develop
 [12]:
-  https://img.shields.io/github/commits-since/realazthat/changeguard/v0.2.0/develop
+  https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.0/develop
 [13]:
-  https://github.com/realazthat/changeguard/compare/v0.2.0...develop
+  https://github.com/realazthat/changeguard/compare/v0.3.0...develop
 [14]: https://img.shields.io/github/last-commit/realazthat/changeguard/develop
 [15]:
-  https://img.shields.io/github/commits-since/realazthat/changeguard/v0.2.0/develop
+  https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.0/develop
 [16]:
-  https://github.com/realazthat/changeguard/compare/v0.2.0...develop
+  https://github.com/realazthat/changeguard/compare/v0.3.0...develop
