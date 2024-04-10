@@ -33,6 +33,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Install Bash (Ubuntu)
+      run: sudo apt-get update && sudo apt-get install -y build-essential libssl-dev curl git-core bash grep git xxhash
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
@@ -45,8 +47,6 @@ jobs:
         echo "${{ matrix.python-version.file }}"
         echo "${{ matrix.python-version.file }}" > .python-version
         cat .python-version
-    - name: Install Bash (Ubuntu)
-      run: sudo apt-get update && sudo apt-get install -y bash grep git xxhash
     - name: Run everything
       run: |
         bash scripts/pre.sh
