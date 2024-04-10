@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "changeguard"
-version = "0.3.0"
+version = "0.3.1"
 description = "CLI to check if any of the original files in a repository/directory change over the course of a precommit script."
 authors = [{name = "AYF", email = "realazthat@gmail.com"}]
 license = {file = "LICENSE.md"}
@@ -130,8 +130,8 @@ Documentation = "https://github.com/realazthat/changeguard"
 Repository = "https://github.com/realazthat/changeguard"
 
 [tool.changeguard-project-metadata]
-last_unstable_release = "0.3.0"
-last_stable_release = "0.3.0"
+last_unstable_release = "0.3.1"
+last_stable_release = "0.3.1"
 
 [tool.setuptools]
 packages = ["changeguard"]

@@ -56,7 +56,7 @@ repository/directory change over the course of a precommit script.
 pip install changeguard
 
 # Install from git (https://github.com/realazthat/changeguard)
-pip install git+https://github.com/realazthat/changeguard.git@v0.3.0
+pip install git+https://github.com/realazthat/changeguard.git@v0.3.1
 ```
 
 ### Use
@@ -122,21 +122,21 @@ These instructions are for maintainers of the project.
 [4]: https://img.shields.io/pypi/v/changeguard
 [5]: https://pypi.org/project/changeguard/
 [6]:
-  https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.0/master
+  https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.1/master
 [7]: https://img.shields.io/github/last-commit/realazthat/changeguard/master
 [8]: https://img.shields.io/pypi/pyversions/changeguard
 [9]:
   https://img.shields.io/github/languages/top/realazthat/changeguard.svg?&cacheSeconds=28800
 [10]:
-  https://github.com/realazthat/changeguard/compare/v0.3.0...master
+  https://github.com/realazthat/changeguard/compare/v0.3.1...master
 [11]:
   https://github.com/realazthat/changeguard/actions/workflows/build-and-test.yml/badge.svg?branch=develop
 [12]:
-  https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.0/develop
+  https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.1/develop
 [13]:
-  https://github.com/realazthat/changeguard/compare/v0.3.0...develop
+  https://github.com/realazthat/changeguard/compare/v0.3.1...develop
 [14]: https://img.shields.io/github/last-commit/realazthat/changeguard/develop
 [15]:
-  https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.0/develop
+  https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.1/develop
 [16]:
-  https://github.com/realazthat/changeguard/compare/v0.3.0...develop
+  https://github.com/realazthat/changeguard/compare/v0.3.1...develop
