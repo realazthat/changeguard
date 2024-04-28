@@ -17,6 +17,8 @@ if [[ "${IDEAL}" == "1" ]]; then
   STEP=pre bash scripts/utilities/changeguard.sh
 fi
 
+export TOML="${PROJ_PATH}/pyproject.toml"
+
 EXTRA=dev bash scripts/utilities/pin-extra-reqs.sh
 EXTRA=prod bash scripts/utilities/pin-extra-reqs.sh
 bash scripts/run-all-examples.sh
