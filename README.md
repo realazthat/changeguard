@@ -7,6 +7,9 @@ SOURCE: `README.md.jinja2`.
 <!--
 
 
+
+
+
 -->
 
 # ChangeGuard
@@ -33,22 +36,8 @@ repository/directory change over the course of a precommit script.
 - Use `.changeguard-ignore` to ignore files that should not be checked for
   changes.
 
-## Getting Started
 
-### Install
-
-#### Tested on
-
-- WSL2 Ubuntu 20.04, Python 3.8.0
-- Ubuntu 20.04, Python 3.8.0, 3.9.0, 3.10.0, 3.11.0, 3.12.0, tested in GitHub
-  Actions workflow
-  ([build-and-test.yml](./.github/workflows/build-and-test.yml)).
-
-**Requirements:**
-
-- Python 3.8+
-  - Why: Some dev dependencies require Python 3.8+.
-
+## Install
 ```bash
 # Install from pypi (https://pypi.org/project/changeguard/)
 pip install changeguard
@@ -57,25 +46,57 @@ pip install changeguard
 pip install git+https://github.com/realazthat/changeguard.git@v0.3.1
 ```
 
-### Use
+## 💻 Command Line Options
+
+<!---->
+<img src="README.help.generated.svg" alt="Output of `python -m changeguard.cli --help`" />
+<!---->
+
+
+## Requirements
+
+- Python 3.8+
+  - Why: Some dev dependencies require Python 3.8+.
+
+### Tested on
+
+- WSL2 Ubuntu 20.04, Python `3.8.0`.
+- Ubuntu 20.04, Python `3.8.0, 3.9.0, 3.10.0, 3.11.0, 3.12.0`, tested in GitHub Actions
+  workflow ([build-and-test.yml](./.github/workflows/build-and-test.yml)).
 
 ## Contributions
 
 ### Development environment: Linux-like
 
 - For running `pre.sh` (Linux-like environment).
+
+  - From [./.github/dependencies.yml](./.github/dependencies.yml), which is used for
+    the GH Action to do a fresh install of everything:
+
+    ```yaml
+    bash: scripts.
+    findutils: scripts.
+    grep: tests.
+    xxd: tests.
+    git: scripts, tests.
+    xxhash: scripts (changeguard).
+    rsync: out-of-directory test.
+    expect: for `unbuffer`, useful to grab and compare ansi color symbols.
+    jq: dependency for [yq](https://github.com/kislyuk/yq), which is used to generate
+      the README; the README generator needs to use `tomlq` (which is a part of `yq`)
+      to query `pyproject.toml`.
+    
+    ```
+
   - Requires `pyenv`, or an exact matching version of python as in
     [`.python-version`](./.python-version).
   - `nvm` for prettier (markdown formatting).
-  - `bash`, `grep`, `xxd`, `git`, `xxhash` (for scripts/workflows/tests).
-  - `jq`, ([installation](https://jqlang.github.io/jq/)) required for
-    [yq](https://github.com/kislyuk/yq), which is itself required for our
-    `README.md` generation, which uses `tomlq` (from the
-    [yq](https://github.com/kislyuk/yq) package) to include version strings from
-    `pyproject.toml`.
-  - Requires `nodejs` (for act).
-  - Requires `go` (to run act).
-  - `docker` (for act).
+  - `act` (to run the GH Action locally):
+    - Requires `nodejs`.
+    - Requires `Go`.
+    - `docker`.
+  - Generate animation:
+    - `docker`.
 
 ### Commit Process
 
@@ -121,7 +142,8 @@ These instructions are for maintainers of the project.
 [5]: https://pypi.org/project/changeguard/
 [6]:
   https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.1/master
-[7]: https://img.shields.io/github/last-commit/realazthat/changeguard/master
+[7]:
+  https://img.shields.io/github/last-commit/realazthat/changeguard/master
 [8]: https://img.shields.io/pypi/pyversions/changeguard
 [9]:
   https://img.shields.io/github/languages/top/realazthat/changeguard.svg?&cacheSeconds=28800
@@ -133,7 +155,8 @@ These instructions are for maintainers of the project.
   https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.1/develop
 [13]:
   https://github.com/realazthat/changeguard/compare/v0.3.1...develop
-[14]: https://img.shields.io/github/last-commit/realazthat/changeguard/develop
+[14]:
+  https://img.shields.io/github/last-commit/realazthat/changeguard/develop
 [15]:
   https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.1/develop
 [16]:

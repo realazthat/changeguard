@@ -1,11 +1,15 @@
 <!--
-{% set last_unstable_release=shell('tomlq -r \'.["tool"]["changeguard-project-metadata"]["last_unstable_release"]\' pyproject.toml',
+{% set project_name='changeguard' %}
+{% set project_name_proper='ChangeGuard' %}
+{% set last_unstable_release=shell('tomlq -r -e \'.["tool"]["changeguard-project-metadata"]["last_unstable_release"]\' pyproject.toml',
                                    include_args=False) | trim %}
-{% set last_stable_release=shell('tomlq -r \'.["tool"]["changeguard-project-metadata"]["last_stable_release"]\' pyproject.toml',
+{% set last_stable_release=shell('tomlq -r -e \'.["tool"]["changeguard-project-metadata"]["last_stable_release"]\' pyproject.toml',
+                                 include_args=False) | trim %}
+{% set tested_python_versions=shell('python -m yq -r -c \'[.jobs["build-and-test"]["strategy"]["matrix"]["python-version"][].gh] | join(", ")\' .github/workflows/build-and-test.yml',
                                  include_args=False) | trim %}
 -->
 
-# ChangeGuard
+# {{project_name_proper}}
 
 ![Top language][9] ![GitHub License][3] [![PyPI - Version][4]][5]
 [![Python Version][8]][5]
@@ -29,49 +33,62 @@ repository/directory change over the course of a precommit script.
 - Use `.changeguard-ignore` to ignore files that should not be checked for
   changes.
 
-## Getting Started
 
-### Install
+## Install
+```bash
+# Install from pypi (https://pypi.org/project/{{project_name}}/)
+pip install {{project_name}}
 
-#### Tested on
+# Install from git (https://github.com/realazthat/{{project_name}})
+pip install git+https://github.com/realazthat/{{project_name}}.git@v{{last_stable_release}}
+```
 
-- WSL2 Ubuntu 20.04, Python 3.8.0
-- Ubuntu 20.04, Python 3.8.0, 3.9.0, 3.10.0, 3.11.0, 3.12.0, tested in GitHub
-  Actions workflow
-  ([build-and-test.yml](./.github/workflows/build-and-test.yml)).
+## 💻 Command Line Options
 
-**Requirements:**
+<!--{{ shell('python -m changeguard.cli --help',
+             rich='README.help.generated.svg',
+             rich_alt='Output of `python -m changeguard.cli --help`',
+             rich_bg_color='black',
+             rich_term='xterm-256color',
+             rich_cols=160,
+             decomentify='nl') }}-->
+
+
+## Requirements
 
 - Python 3.8+
   - Why: Some dev dependencies require Python 3.8+.
 
-```bash
-# Install from pypi (https://pypi.org/project/changeguard/)
-pip install changeguard
+### Tested on
 
-# Install from git (https://github.com/realazthat/changeguard)
-pip install git+https://github.com/realazthat/changeguard.git@v{{last_stable_release}}
-```
-
-### Use
+- WSL2 Ubuntu 20.04, Python `{{rawsnippet('./.python-version') | trim}}`.
+- Ubuntu 20.04, Python `{{tested_python_versions}}`, tested in GitHub Actions
+  workflow ([build-and-test.yml](./.github/workflows/build-and-test.yml)).
 
 ## Contributions
 
 ### Development environment: Linux-like
 
 - For running `pre.sh` (Linux-like environment).
+
+  - From {{path('./.github/dependencies.yml', link='md')}}, which is used for
+    the GH Action to do a fresh install of everything:
+
+    {{shell('python -m yq --yaml-output  \'.dev\' .github/dependencies.yml',
+    include_args=False,
+    backtickify='yaml',
+    indented=4
+    )}}
+
   - Requires `pyenv`, or an exact matching version of python as in
     [`{{path('.python-version')}}`](./.python-version).
   - `nvm` for prettier (markdown formatting).
-  - `bash`, `grep`, `xxd`, `git`, `xxhash` (for scripts/workflows/tests).
-  - `jq`, ([installation](https://jqlang.github.io/jq/)) required for
-    [yq](https://github.com/kislyuk/yq), which is itself required for our
-    `{{path('README.md')}}` generation, which uses `tomlq` (from the
-    [yq](https://github.com/kislyuk/yq) package) to include version strings from
-    `{{path('pyproject.toml')}}`.
-  - Requires `nodejs` (for act).
-  - Requires `go` (to run act).
-  - `docker` (for act).
+  - `act` (to run the GH Action locally):
+    - Requires `nodejs`.
+    - Requires `Go`.
+    - `docker`.
+  - Generate animation:
+    - `docker`.
 
 ### Commit Process
 
@@ -92,7 +109,7 @@ These instructions are for maintainers of the project.
 2. In the `develop` branch, bump the version in `{{path('pyproject.toml')}}`,
    following semantic versioning principles. Also modify the
    `last_unstable_release` and `last_stable_release` in the
-   `[tool.changeguard-project-metadata]` table as appropriate.
+   `[tool.{{project_name}}-project-metadata]` table as appropriate.
 3. In the `develop` branch, commit these changes with a message like "Prepare
    release X.Y.Z". (See the contributions section [above](#commit-process)).
 4. Merge the `develop` branch into the `master` branch:
@@ -109,28 +126,30 @@ These instructions are for maintainers of the project.
 9. Push the develop branch to GitHub: `git push origin develop`.
 
 [1]:
-  https://github.com/realazthat/changeguard/actions/workflows/build-and-test.yml/badge.svg?branch=master
+  https://github.com/realazthat/{{project_name}}/actions/workflows/build-and-test.yml/badge.svg?branch=master
 [2]:
-  https://github.com/realazthat/changeguard/actions/workflows/build-and-test.yml
-[3]: https://img.shields.io/github/license/realazthat/changeguard
-[4]: https://img.shields.io/pypi/v/changeguard
-[5]: https://pypi.org/project/changeguard/
+  https://github.com/realazthat/{{project_name}}/actions/workflows/build-and-test.yml
+[3]: https://img.shields.io/github/license/realazthat/{{project_name}}
+[4]: https://img.shields.io/pypi/v/{{project_name}}
+[5]: https://pypi.org/project/{{project_name}}/
 [6]:
-  https://img.shields.io/github/commits-since/realazthat/changeguard/v{{last_stable_release}}/master
-[7]: https://img.shields.io/github/last-commit/realazthat/changeguard/master
-[8]: https://img.shields.io/pypi/pyversions/changeguard
+  https://img.shields.io/github/commits-since/realazthat/{{project_name}}/v{{last_stable_release}}/master
+[7]:
+  https://img.shields.io/github/last-commit/realazthat/{{project_name}}/master
+[8]: https://img.shields.io/pypi/pyversions/{{project_name}}
 [9]:
-  https://img.shields.io/github/languages/top/realazthat/changeguard.svg?&cacheSeconds=28800
+  https://img.shields.io/github/languages/top/realazthat/{{project_name}}.svg?&cacheSeconds=28800
 [10]:
-  https://github.com/realazthat/changeguard/compare/v{{last_stable_release}}...master
+  https://github.com/realazthat/{{project_name}}/compare/v{{last_stable_release}}...master
 [11]:
-  https://github.com/realazthat/changeguard/actions/workflows/build-and-test.yml/badge.svg?branch=develop
+  https://github.com/realazthat/{{project_name}}/actions/workflows/build-and-test.yml/badge.svg?branch=develop
 [12]:
-  https://img.shields.io/github/commits-since/realazthat/changeguard/v{{last_stable_release}}/develop
+  https://img.shields.io/github/commits-since/realazthat/{{project_name}}/v{{last_stable_release}}/develop
 [13]:
-  https://github.com/realazthat/changeguard/compare/v{{last_stable_release}}...develop
-[14]: https://img.shields.io/github/last-commit/realazthat/changeguard/develop
+  https://github.com/realazthat/{{project_name}}/compare/v{{last_stable_release}}...develop
+[14]:
+  https://img.shields.io/github/last-commit/realazthat/{{project_name}}/develop
 [15]:
-  https://img.shields.io/github/commits-since/realazthat/changeguard/v{{last_unstable_release}}/develop
+  https://img.shields.io/github/commits-since/realazthat/{{project_name}}/v{{last_unstable_release}}/develop
 [16]:
-  https://github.com/realazthat/changeguard/compare/v{{last_unstable_release}}...develop
+  https://github.com/realazthat/{{project_name}}/compare/v{{last_unstable_release}}...develop

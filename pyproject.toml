@@ -104,7 +104,7 @@ dev = [
   "rich==13.7.1",
   "rich-argparse==1.4.0",
   "secretstorage==3.3.3",
-  "snipinator==1.0.9",
+  "snipinator==1.4.0",
   "toml-sort==0.23.1",
   "tomli==2.0.1",
   "tomlkit==0.12.4",
