@@ -24,3 +24,10 @@ python -m snipinator.cli \
   -o "${PROJ_PATH}/README.md" \
   --rm \
   --chmod-ro
+
+LAST_VERSION=$(tomlq -r -e '.["tool"]["changeguard-project-metadata"]["last_stable_release"]' pyproject.toml)
+python -m mdremotifier.cli \
+  -i "${PROJ_PATH}/README.md" \
+  --url-prefix "https://github.com/realazthat/changeguard/blob/v${LAST_VERSION}/" \
+  --img-url-prefix "https://raw.githubusercontent.com/realazthat/changeguard/v${LAST_VERSION}/" \
+  -o "${PROJ_PATH}/.github/README.remotified.md"
