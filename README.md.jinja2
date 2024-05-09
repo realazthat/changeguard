@@ -11,13 +11,13 @@
 
 # {{project_name_proper}}
 
-![Top language][9] ![GitHub License][3] [![PyPI - Version][4]][5]
-[![Python Version][8]][5]
+![Top language][1] ![GitHub License][2] [![PyPI - Version][3]][4]
+[![Python Version][5]][4]
 
 |         | Status                     | Stable                    | Unstable                  |                    |
 | ------- | -------------------------- | ------------------------- | ------------------------- | ------------------ |
-| Master  | [![Build and Test][1]][2]  | [![since tagged][6]][10]  |                           | ![last commit][7]  |
-| Develop | [![Build and Test][11]][2] | [![since tagged][12]][13] | [![since tagged][15]][16] | ![last commit][14] |
+| Master  | [![Build and Test][6]][7]  | [![since tagged][8]][9]   |                           | ![last commit][10] |
+| Develop | [![Build and Test][11]][7] | [![since tagged][12]][13] | [![since tagged][14]][15] | ![last commit][16] |
 
 CLI to check if your repository/directory files have changed over the span of a
 script.
@@ -33,8 +33,8 @@ repository/directory change over the course of a precommit script.
 - Use `.changeguard-ignore` to ignore files that should not be checked for
   changes.
 
-
 ## Install
+
 ```bash
 # Install from pypi (https://pypi.org/project/{{project_name}}/)
 pip install {{project_name}}
@@ -52,7 +52,6 @@ pip install git+https://github.com/realazthat/{{project_name}}.git@v{{last_stabl
              rich_term='xterm-256color',
              rich_cols=160,
              decomentify='nl') }}-->
-
 
 ## Requirements
 
@@ -126,21 +125,21 @@ These instructions are for maintainers of the project.
 9. Push the develop branch to GitHub: `git push origin develop`.
 
 [1]:
-  https://github.com/realazthat/{{project_name}}/actions/workflows/build-and-test.yml/badge.svg?branch=master
-[2]:
-  https://github.com/realazthat/{{project_name}}/actions/workflows/build-and-test.yml
-[3]: https://img.shields.io/github/license/realazthat/{{project_name}}
-[4]: https://img.shields.io/pypi/v/{{project_name}}
-[5]: https://pypi.org/project/{{project_name}}/
-[6]:
-  https://img.shields.io/github/commits-since/realazthat/{{project_name}}/v{{last_stable_release}}/master
-[7]:
-  https://img.shields.io/github/last-commit/realazthat/{{project_name}}/master
-[8]: https://img.shields.io/pypi/pyversions/{{project_name}}
-[9]:
   https://img.shields.io/github/languages/top/realazthat/{{project_name}}.svg?&cacheSeconds=28800
-[10]:
+[2]: https://img.shields.io/github/license/realazthat/{{project_name}}
+[3]: https://img.shields.io/pypi/v/{{project_name}}
+[4]: https://pypi.org/project/{{project_name}}/
+[5]: https://img.shields.io/pypi/pyversions/{{project_name}}
+[6]:
+  https://github.com/realazthat/{{project_name}}/actions/workflows/build-and-test.yml/badge.svg?branch=master
+[7]:
+  https://github.com/realazthat/{{project_name}}/actions/workflows/build-and-test.yml
+[8]:
+  https://img.shields.io/github/commits-since/realazthat/{{project_name}}/v{{last_stable_release}}/master
+[9]:
   https://github.com/realazthat/{{project_name}}/compare/v{{last_stable_release}}...master
+[10]:
+  https://img.shields.io/github/last-commit/realazthat/{{project_name}}/master
 [11]:
   https://github.com/realazthat/{{project_name}}/actions/workflows/build-and-test.yml/badge.svg?branch=develop
 [12]:
@@ -148,8 +147,8 @@ These instructions are for maintainers of the project.
 [13]:
   https://github.com/realazthat/{{project_name}}/compare/v{{last_stable_release}}...develop
 [14]:
-  https://img.shields.io/github/last-commit/realazthat/{{project_name}}/develop
-[15]:
   https://img.shields.io/github/commits-since/realazthat/{{project_name}}/v{{last_unstable_release}}/develop
-[16]:
+[15]:
   https://github.com/realazthat/{{project_name}}/compare/v{{last_unstable_release}}...develop
+[16]:
+  https://img.shields.io/github/last-commit/realazthat/{{project_name}}/develop

@@ -14,13 +14,13 @@ SOURCE: `README.md.jinja2`.
 
 # ChangeGuard
 
-![Top language][9] ![GitHub License][3] [![PyPI - Version][4]][5]
-[![Python Version][8]][5]
+![Top language][1] ![GitHub License][2] [![PyPI - Version][3]][4]
+[![Python Version][5]][4]
 
 |         | Status                     | Stable                    | Unstable                  |                    |
 | ------- | -------------------------- | ------------------------- | ------------------------- | ------------------ |
-| Master  | [![Build and Test][1]][2]  | [![since tagged][6]][10]  |                           | ![last commit][7]  |
-| Develop | [![Build and Test][11]][2] | [![since tagged][12]][13] | [![since tagged][15]][16] | ![last commit][14] |
+| Master  | [![Build and Test][6]][7]  | [![since tagged][8]][9]   |                           | ![last commit][10] |
+| Develop | [![Build and Test][11]][7] | [![since tagged][12]][13] | [![since tagged][14]][15] | ![last commit][16] |
 
 CLI to check if your repository/directory files have changed over the span of a
 script.
@@ -36,8 +36,8 @@ repository/directory change over the course of a precommit script.
 - Use `.changeguard-ignore` to ignore files that should not be checked for
   changes.
 
-
 ## Install
+
 ```bash
 # Install from pypi (https://pypi.org/project/changeguard/)
 pip install changeguard
@@ -51,7 +51,6 @@ pip install git+https://github.com/realazthat/changeguard.git@v0.3.1
 <!---->
 <img src="README.help.generated.svg" alt="Output of `python -m changeguard.cli --help`" />
 <!---->
-
 
 ## Requirements
 
@@ -134,21 +133,21 @@ These instructions are for maintainers of the project.
 9. Push the develop branch to GitHub: `git push origin develop`.
 
 [1]:
-  https://github.com/realazthat/changeguard/actions/workflows/build-and-test.yml/badge.svg?branch=master
-[2]:
-  https://github.com/realazthat/changeguard/actions/workflows/build-and-test.yml
-[3]: https://img.shields.io/github/license/realazthat/changeguard
-[4]: https://img.shields.io/pypi/v/changeguard
-[5]: https://pypi.org/project/changeguard/
-[6]:
-  https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.1/master
-[7]:
-  https://img.shields.io/github/last-commit/realazthat/changeguard/master
-[8]: https://img.shields.io/pypi/pyversions/changeguard
-[9]:
   https://img.shields.io/github/languages/top/realazthat/changeguard.svg?&cacheSeconds=28800
-[10]:
+[2]: https://img.shields.io/github/license/realazthat/changeguard
+[3]: https://img.shields.io/pypi/v/changeguard
+[4]: https://pypi.org/project/changeguard/
+[5]: https://img.shields.io/pypi/pyversions/changeguard
+[6]:
+  https://github.com/realazthat/changeguard/actions/workflows/build-and-test.yml/badge.svg?branch=master
+[7]:
+  https://github.com/realazthat/changeguard/actions/workflows/build-and-test.yml
+[8]:
+  https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.1/master
+[9]:
   https://github.com/realazthat/changeguard/compare/v0.3.1...master
+[10]:
+  https://img.shields.io/github/last-commit/realazthat/changeguard/master
 [11]:
   https://github.com/realazthat/changeguard/actions/workflows/build-and-test.yml/badge.svg?branch=develop
 [12]:
@@ -156,8 +155,8 @@ These instructions are for maintainers of the project.
 [13]:
   https://github.com/realazthat/changeguard/compare/v0.3.1...develop
 [14]:
-  https://img.shields.io/github/last-commit/realazthat/changeguard/develop
-[15]:
   https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.1/develop
-[16]:
+[15]:
   https://github.com/realazthat/changeguard/compare/v0.3.1...develop
+[16]:
+  https://img.shields.io/github/last-commit/realazthat/changeguard/develop

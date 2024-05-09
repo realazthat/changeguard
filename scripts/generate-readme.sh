@@ -13,6 +13,8 @@ TOML=${PROJ_PATH}/pyproject.toml EXTRA=dev \
   TARGET_VENV_PATH="${PWD}/.cache/scripts/.venv" \
   bash "${PROJ_PATH}/scripts/utilities/ensure-reqs.sh"
 
+bash scripts/format.sh
+
 # TODO: Change this in the next version of snipinator to use `--rm --force`.
 chmod +w "${PROJ_PATH}/README.md" || true
 rm -f "${PROJ_PATH}/README.md" || true

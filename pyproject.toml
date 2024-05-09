@@ -78,6 +78,7 @@ dev = [
   "keyring==25.0.0",
   "markdown-it-py==3.0.0",
   "markupsafe==2.1.5",
+  "mdreftidy==0.3.0",
   "mdurl==0.1.2",
   "more-itertools==10.2.0",
   "mypy==1.8.0",
