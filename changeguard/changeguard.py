@@ -238,7 +238,7 @@ def _ConstructIgnorePathSpecs(*, ignorefiles: List[TextIO],
 
 
 def Hash(*, hash_cmd: str, directory: Path, method: _MethodLiteral,
-         audit_file: TextIO, ignores: List[pathspec.PathSpec],
+         audit_file_path: Path, ignores: List[pathspec.PathSpec],
          ignore_metas: Dict[str, List[str]], max_workers: int,
          tmp_backup_dir: Optional[Path], console: Console):
   failures: List[_Failure] = []
@@ -289,7 +289,10 @@ def Hash(*, hash_cmd: str, directory: Path, method: _MethodLiteral,
       shutil.copy(directory / path, dst_path)
       dst_path.chmod(0o777)
 
-  yaml.safe_dump(audit_dict, audit_file)
+  if not audit_file_path.parent.exists():
+    audit_file_path.parent.mkdir(parents=True, exist_ok=True)
+  with audit_file_path.open('w') as audit_file:
+    yaml.safe_dump(audit_dict, audit_file)
   console.print('Hashing complete', style='bold green')
 
 

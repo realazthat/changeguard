@@ -24,6 +24,14 @@ SOURCE: `README.md.jinja2`.
 
 </div>
 
+<p align="center">
+  <strong>
+    <a href="#-requirements">✅Requirements</a>
+    &nbsp;&bull;&nbsp;
+    <a href="#-docker-image">🐳Docker</a>
+  </strong>
+</p>
+
 <div align="center">
 
 ![Top language][3] ![GitHub License][4] [![PyPI - Version][5]][6]
@@ -83,6 +91,82 @@ pip install git+https://github.com/realazthat/changeguard.git@v0.3.1
 - Ubuntu 20.04, Python `3.8.0, 3.9.0, 3.10.0, 3.11.0, 3.12.0`, tested in GitHub Actions
   workflow ([build-and-test.yml](./.github/workflows/build-and-test.yml)).
 
+## 🐳 Docker Image
+
+Docker images are published to [ghcr.io/realazthat/changeguard][48] at each
+tag.
+
+```bash
+# Use the published images at ghcr.io/realazthat/changeguard.
+docker run --rm -it ghcr.io/realazthat/changeguard:v0.3.1 --help
+
+# /data in the docker image is the working directory, so paths are simpler.
+docker run --rm -it \
+  -v $(pwd):/data \
+  ghcr.io/realazthat/changeguard:v0.3.1 \
+  hash \
+  --ignorefile "${PROJ_PATH}/.gitignore" \
+  --ignoreline .trunk --ignoreline .git \
+  --method "${METHOD}" \
+  --tmp-backup-dir "${PWD}/.cache/scripts/audit-original" \
+  --audit-file "${AUDIT_FILE}" \
+  --directory "${PROJ_PATH}"
+
+docker run --rm -it \
+  -v $(pwd):/data \
+  ghcr.io/realazthat/changeguard:v0.3.1 \
+  audit \
+  --audit-file "${AUDIT_FILE}" \
+  --show-delta \
+  --directory "${PROJ_PATH}" 2>&1 | tee "${AUDIT_LOG}"
+```
+
+If you want to build the image yourself, you can use the Dockerfile in the
+repository.
+
+```bash
+# Build the docker image.
+docker build -t my-changeguard-image .
+
+# Run the docker image.
+docker run --rm -it my-changeguard-image --help
+```
+
+If you want to build the image yourself, you can use the Dockerfile in the
+repository.
+
+<!---->
+```bash
+
+# Build the docker image.
+docker build -t my-changeguard-image .
+
+# Print usage.
+docker run --rm --tty my-changeguard-image --help
+
+# /data in the docker image is the working directory, so paths are simpler.
+docker run --rm --tty \
+  -v "${PWD}:/data" \
+  my-changeguard-image \
+  hash \
+  --ignorefile ".gitignore" \
+  --ignoreline .trunk --ignoreline .git \
+  --method auto \
+  --tmp-backup-dir ".deleteme/audit-original" \
+  --audit-file ".deleteme/check-changes-audit.yaml" \
+  --directory "."
+
+docker run --rm --tty \
+  -v "${PWD}:/data" \
+  my-changeguard-image \
+  audit \
+  --audit-file ".deleteme/check-changes-audit.yaml" \
+  --show-delta \
+  --directory . 2>&1 | tee ".deleteme/check-changes-audit.log"
+
+```
+<!---->
+
 ## Contributions
 
 ### Development environment: Linux-like
@@ -116,6 +200,7 @@ pip install git+https://github.com/realazthat/changeguard.git@v0.3.1
     - `docker`.
   - Generate animation:
     - `docker`.
+  - docker (for building the docker image).
 
 ### Commit Process
 

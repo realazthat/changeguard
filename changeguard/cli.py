@@ -116,7 +116,7 @@ def main():
     )
     hash_cmd_parser.add_argument(
         '--audit-file',
-        type=argparse.FileType('w'),
+        type=Path,
         required=True,
         help='File to output the hashes to, used for auditing.')
     audit_cmd_parser = cmd.add_parser(
@@ -153,10 +153,11 @@ def main():
                                           ignorelines=list(args.ignoreline),
                                           ignore_metas=ignore_metas,
                                           cwd=args.directory)
+      audit_file: Path = args.audit_file
       return Hash(hash_cmd=args.hash_cmd,
                   directory=args.directory,
                   method=args.method,
-                  audit_file=args.audit_file,
+                  audit_file_path=audit_file,
                   ignores=ignores,
                   ignore_metas=ignore_metas,
                   max_workers=args.max_workers,
