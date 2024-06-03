@@ -6,13 +6,6 @@
 # the license text.
 """Check changes in a directory, before => after. Ignores new files."""
 
-# To run test_list_paths:
-#
-# ```bash
-# python scripts/check-changes.py test_list_paths --directory . --ignorefile \
-#   .gitignore --ignoreline .git --ignoreline .trunk
-# ```
-
 import argparse
 import json
 import sys
