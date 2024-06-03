@@ -14,14 +14,12 @@ TOML=${PROJ_PATH}/pyproject.toml EXTRA=dev \
   bash "${PROJ_PATH}/scripts/utilities/ensure-reqs.sh"
 
 
-# TODO: Change this in the next version of snipinator to use `--rm --force`.
-chmod +w "${PROJ_PATH}/README.md" || true
-rm -f "${PROJ_PATH}/README.md" || true
-touch "${PROJ_PATH}/README.md"
 python -m snipinator.cli \
   -t "${PROJ_PATH}/README.md.jinja2" \
-  -o "${PROJ_PATH}/README.md" \
   --rm \
+  --force \
+  --create \
+  -o "${PROJ_PATH}/README.md" \
   --chmod-ro
 
 LAST_VERSION=$(tomlq -r -e '.["tool"]["changeguard-project-metadata"]["last_stable_release"]' pyproject.toml)
