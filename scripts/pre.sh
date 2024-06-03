@@ -25,7 +25,7 @@ bash scripts/run-all-examples.sh
 bash scripts/run-all-tests.sh
 bash scripts/format.sh
 bash scripts/type-check.sh
-bash scripts/generate-readme.sh
+bash scripts/generate.sh
 bash scripts/run-wheel-smoke-test.sh
 bash scripts/run-edit-mode-smoke-test.sh
 if [[ -z "${GITHUB_ACTIONS:-}" ]]; then
