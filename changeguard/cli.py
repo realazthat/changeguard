@@ -25,6 +25,19 @@ from .changeguard import (_VALID_METHODS, Audit, Hash, TestListPaths,
 _DEFAULT_HASH_CMD = 'xxhsum -H0'
 
 
+def _GetProgramName() -> str:
+  if __package__:
+    # Use __package__ to get the base package name
+    base_module_path = __package__
+    # Infer the module name from the file path, with assumptions about the structure
+    module_name = Path(__file__).stem
+    # Construct what might be the intended full module path
+    full_module_path = f'{base_module_path}.{module_name}' if base_module_path else module_name
+    return f'python -m {full_module_path}'
+  else:
+    return sys.argv[0]
+
+
 def _AddIgnoreArgs(parser: argparse.ArgumentParser):
   parser.add_argument('--ignorefile',
                       type=argparse.FileType('r'),
@@ -85,7 +98,8 @@ class _CustomRichHelpFormatter(RichHelpFormatter):
 def main():
   console = Console(file=sys.stderr)
   try:
-    parser = argparse.ArgumentParser(description=__doc__,
+    parser = argparse.ArgumentParser(prog=_GetProgramName(),
+                                     description=__doc__,
                                      formatter_class=_CustomRichHelpFormatter)
 
     parser.add_argument('--version', action='version', version=_build_version)
