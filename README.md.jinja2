@@ -10,20 +10,34 @@
 {% set badge_color='0A1E1E' %}
 -->
 
-# {{project_name_proper}}
+# <div align="center">[![{{project_name_proper}}][1]][2]</div>
 
 <div align="center">
 
 <!-- Icons from https://lucide.dev/icons/users -->
 <!-- Icons from https://lucide.dev/icons/laptop-minimal -->
 
-![**Audience:** Developers][1] ![**Platform:** Linux][2]
+![**Audience:** Developers][3] ![**Platform:** Linux][4]
 
 </div>
 
 <p align="center">
   <strong>
+    <a href="https://github.com/realazthat/{{project_name}}">🏠Home</a>
+    &nbsp;&bull;&nbsp;
+    <a href="#-features">🎇Features</a>
+    &nbsp;&bull;&nbsp;
+    <a href="#-install">🔨Install</a>
+    &nbsp;&bull;&nbsp;
     <a href="#-requirements">✅Requirements</a>
+  </strong>
+</p>
+
+<p align="center">
+  <strong>
+    <a href="#-usage">🚜Usage</a>
+    &nbsp;&bull;&nbsp;
+    <a href="#-command-line-options">💻CLI</a>
     &nbsp;&bull;&nbsp;
     <a href="#-docker-image">🐳Docker</a>
   </strong>
@@ -31,8 +45,11 @@
 
 <div align="center">
 
-![Top language][3] ![GitHub License][4] [![PyPI - Version][5]][6]
-[![Python Version][7]][6]
+![Top language][5] ![GitHub License][6] [![PyPI - Version][7]][8]
+[![Python Version][9]][8]
+
+**CLI to check if your repository/directory files have changed over the span of
+a script.**
 
 </div>
 
@@ -40,28 +57,25 @@
 
 <div align="center">
 
-|         | Status                     | Stable                    | Unstable                  |                    |
-| ------- | -------------------------- | ------------------------- | ------------------------- | ------------------ |
-| Master  | [![Build and Test][8]][9]  | [![since tagged][10]][11] |                           | ![last commit][12] |
-| Develop | [![Build and Test][13]][9] | [![since tagged][14]][15] | [![since tagged][16]][17] | ![last commit][18] |
-
-CLI to check if your repository/directory files have changed over the span of a
-script.
+|               | Status                      | Stable                    | Unstable                  |                          |
+| ------------- | --------------------------- | ------------------------- | ------------------------- | ------------------------ |
+| [Master][10]  | [![Build and Test][11]][12] | [![since tagged][13]][14] |                           | [![last commit][15]][16] |
+| [Develop][17] | [![Build and Test][18]][12] | [![since tagged][19]][20] | [![since tagged][21]][22] | [![last commit][23]][24] |
 
 </div>
 
-## What
+## ❔ What
 
 Like hashdeep, but customized to check if any of the original files in a
 repository/directory change over the course of a precommit script.
 
-## Features
+## 🎇 Features
 
 - Can use any sha256sum-like command (uses xxhash by default).
 - Use `.changeguard-ignore` to ignore files that should not be checked for
   changes.
 
-## Install
+## 🔨 Install
 
 ```bash
 # Install from pypi (https://pypi.org/project/{{project_name}}/)
@@ -89,7 +103,7 @@ pip install git+https://github.com/realazthat/{{project_name}}.git@v{{last_stabl
              rich_cols=160,
              decomentify='nl') }}-->
 
-## Requirements
+## ✅ Requirements
 
 - Python 3.8+
   - Why: Some dev dependencies require Python 3.8+.
@@ -150,7 +164,25 @@ repository.
               backtickify='bash',
               decomentify='nl')|trim}}-->
 
-## Contributions
+## 🤏 Versioning
+
+We use SemVer for versioning. For the versions available, see the tags on this
+repository.
+
+## 🔑 License
+
+This project is licensed under the MIT License - see the
+{{path('./LICENSE.md', link='md')}} file for details.
+
+## 🙏 Thanks
+
+Main libraries used in {{project_name_proper}} are:
+
+- Colorful CLI help: [rich-argparse](https://github.com/hamdanal/rich-argparse).
+- pathspec, for gitignore support:
+  [pathspec](https://github.com/cpburnz/python-pathspec).
+
+## 🫡 Contributions
 
 ### Development environment: Linux-like
 
@@ -186,7 +218,7 @@ repository.
 5. `git commit -m "..."`.
 6. Make a PR to `develop` (or push to develop if you have the rights).
 
-## Release Process
+## 🔄🚀 Release Process
 
 These instructions are for maintainers of the project.
 
@@ -211,38 +243,44 @@ These instructions are for maintainers of the project.
    `git checkout develop && git merge master`.
 9. Push the develop branch to GitHub: `git push origin develop`.
 
-[1]:
-  https://img.shields.io/badge/Audience-Developers-{{badge_color}}?style=plastic&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXVzZXJzIj48cGF0aCBkPSJNMTYgMjF2LTJhNCA0IDAgMCAwLTQtNEg2YTQgNCAwIDAgMC00IDR2MiIvPjxjaXJjbGUgY3g9IjkiIGN5PSI3IiByPSI0Ii8+PHBhdGggZD0iTTIyIDIxdi0yYTQgNCAwIDAgMC0zLTMuODciLz48cGF0aCBkPSJNMTYgMy4xM2E0IDQgMCAwIDEgMCA3Ljc1Ii8+PC9zdmc+
-[2]:
-  https://img.shields.io/badge/Platform-Linux-{{badge_color}}?style=plastic&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxhcHRvcC1taW5pbWFsIj48cmVjdCB3aWR0aD0iMTgiIGhlaWdodD0iMTIiIHg9IjMiIHk9IjQiIHJ4PSIyIiByeT0iMiIvPjxsaW5lIHgxPSIyIiB4Mj0iMjIiIHkxPSIyMCIgeTI9IjIwIi8+PC9zdmc+
+[1]: ./.github/logo-exported.svg
+[2]: https://github.com/realazthat/{{project_name}}
 [3]:
-  https://img.shields.io/github/languages/top/realazthat/{{project_name}}.svg?cacheSeconds=28800&style=plastic&color={{badge_color}}
+  https://img.shields.io/badge/Audience-Developers-{{badge_color}}?style=plastic&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXVzZXJzIj48cGF0aCBkPSJNMTYgMjF2LTJhNCA0IDAgMCAwLTQtNEg2YTQgNCAwIDAgMC00IDR2MiIvPjxjaXJjbGUgY3g9IjkiIGN5PSI3IiByPSI0Ii8+PHBhdGggZD0iTTIyIDIxdi0yYTQgNCAwIDAgMC0zLTMuODciLz48cGF0aCBkPSJNMTYgMy4xM2E0IDQgMCAwIDEgMCA3Ljc1Ii8+PC9zdmc+
 [4]:
-  https://img.shields.io/github/license/realazthat/{{project_name}}?style=plastic&color={{badge_color}}
+  https://img.shields.io/badge/Platform-Linux-{{badge_color}}?style=plastic&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxhcHRvcC1taW5pbWFsIj48cmVjdCB3aWR0aD0iMTgiIGhlaWdodD0iMTIiIHg9IjMiIHk9IjQiIHJ4PSIyIiByeT0iMiIvPjxsaW5lIHgxPSIyIiB4Mj0iMjIiIHkxPSIyMCIgeTI9IjIwIi8+PC9zdmc+
 [5]:
-  https://img.shields.io/pypi/v/{{project_name}}?style=plastic&color={{badge_color}}
-[6]: https://pypi.org/project/{{project_name}}/
+  https://img.shields.io/github/languages/top/realazthat/{{project_name}}.svg?cacheSeconds=28800&style=plastic&color={{badge_color}}
+[6]:
+  https://img.shields.io/github/license/realazthat/{{project_name}}?style=plastic&color={{badge_color}}
 [7]:
-  https://img.shields.io/pypi/pyversions/{{project_name}}?style=plastic&color={{badge_color}}
-[8]:
-  https://github.com/realazthat/{{project_name}}/actions/workflows/build-and-test.yml/badge.svg?branch=master&style=plastic
+  https://img.shields.io/pypi/v/{{project_name}}?style=plastic&color={{badge_color}}
+[8]: https://pypi.org/project/{{project_name}}/
 [9]:
-  https://github.com/realazthat/{{project_name}}/actions/workflows/build-and-test.yml?style=plastic
-[10]:
-  https://img.shields.io/github/commits-since/realazthat/{{project_name}}/v{{last_stable_release}}/master?style=plastic
+  https://img.shields.io/pypi/pyversions/{{project_name}}?style=plastic&color={{badge_color}}
+[10]: https://github.com/realazthat/snipinator/tree/master
 [11]:
-  https://github.com/realazthat/{{project_name}}/compare/v{{last_stable_release}}...master
+  https://github.com/realazthat/{{project_name}}/actions/workflows/build-and-test.yml/badge.svg?branch=master&style=plastic
 [12]:
-  https://img.shields.io/github/last-commit/realazthat/{{project_name}}/master?style=plastic
+  https://github.com/realazthat/{{project_name}}/actions/workflows/build-and-test.yml?style=plastic
 [13]:
-  https://github.com/realazthat/{{project_name}}/actions/workflows/build-and-test.yml/badge.svg?branch=develop&style=plastic
+  https://img.shields.io/github/commits-since/realazthat/{{project_name}}/v{{last_stable_release}}/master?style=plastic
 [14]:
-  https://img.shields.io/github/commits-since/realazthat/{{project_name}}/v{{last_stable_release}}/develop?style=plastic
+  https://github.com/realazthat/{{project_name}}/compare/v{{last_stable_release}}...master
 [15]:
-  https://github.com/realazthat/{{project_name}}/compare/v{{last_stable_release}}...develop
-[16]:
-  https://img.shields.io/github/commits-since/realazthat/{{project_name}}/v{{last_unstable_release}}/develop?style=plastic
-[17]:
-  https://github.com/realazthat/{{project_name}}/compare/v{{last_unstable_release}}...develop
+  https://img.shields.io/github/last-commit/realazthat/{{project_name}}/master?style=plastic
+[16]: https://github.com/realazthat/snipinator/commits/master
+[17]: https://github.com/realazthat/snipinator/tree/develop
 [18]:
+  https://github.com/realazthat/{{project_name}}/actions/workflows/build-and-test.yml/badge.svg?branch=develop&style=plastic
+[19]:
+  https://img.shields.io/github/commits-since/realazthat/{{project_name}}/v{{last_stable_release}}/develop?style=plastic
+[20]:
+  https://github.com/realazthat/{{project_name}}/compare/v{{last_stable_release}}...develop
+[21]:
+  https://img.shields.io/github/commits-since/realazthat/{{project_name}}/v{{last_unstable_release}}/develop?style=plastic
+[22]:
+  https://github.com/realazthat/{{project_name}}/compare/v{{last_unstable_release}}...develop
+[23]:
   https://img.shields.io/github/last-commit/realazthat/{{project_name}}/develop?style=plastic
+[24]: https://github.com/realazthat/snipinator/commits/develop

@@ -13,20 +13,34 @@ SOURCE: `README.md.jinja2`.
 
 -->
 
-# ChangeGuard
+# <div align="center">[![ChangeGuard][1]][2]</div>
 
 <div align="center">
 
 <!-- Icons from https://lucide.dev/icons/users -->
 <!-- Icons from https://lucide.dev/icons/laptop-minimal -->
 
-![**Audience:** Developers][1] ![**Platform:** Linux][2]
+![**Audience:** Developers][3] ![**Platform:** Linux][4]
 
 </div>
 
 <p align="center">
   <strong>
+    <a href="https://github.com/realazthat/changeguard">🏠Home</a>
+    &nbsp;&bull;&nbsp;
+    <a href="#-features">🎇Features</a>
+    &nbsp;&bull;&nbsp;
+    <a href="#-install">🔨Install</a>
+    &nbsp;&bull;&nbsp;
     <a href="#-requirements">✅Requirements</a>
+  </strong>
+</p>
+
+<p align="center">
+  <strong>
+    <a href="#-usage">🚜Usage</a>
+    &nbsp;&bull;&nbsp;
+    <a href="#-command-line-options">💻CLI</a>
     &nbsp;&bull;&nbsp;
     <a href="#-docker-image">🐳Docker</a>
   </strong>
@@ -34,8 +48,11 @@ SOURCE: `README.md.jinja2`.
 
 <div align="center">
 
-![Top language][3] ![GitHub License][4] [![PyPI - Version][5]][6]
-[![Python Version][7]][6]
+![Top language][5] ![GitHub License][6] [![PyPI - Version][7]][8]
+[![Python Version][9]][8]
+
+**CLI to check if your repository/directory files have changed over the span of
+a script.**
 
 </div>
 
@@ -43,28 +60,25 @@ SOURCE: `README.md.jinja2`.
 
 <div align="center">
 
-|         | Status                     | Stable                    | Unstable                  |                    |
-| ------- | -------------------------- | ------------------------- | ------------------------- | ------------------ |
-| Master  | [![Build and Test][8]][9]  | [![since tagged][10]][11] |                           | ![last commit][12] |
-| Develop | [![Build and Test][13]][9] | [![since tagged][14]][15] | [![since tagged][16]][17] | ![last commit][18] |
-
-CLI to check if your repository/directory files have changed over the span of a
-script.
+|               | Status                      | Stable                    | Unstable                  |                          |
+| ------------- | --------------------------- | ------------------------- | ------------------------- | ------------------------ |
+| [Master][10]  | [![Build and Test][11]][12] | [![since tagged][13]][14] |                           | [![last commit][15]][16] |
+| [Develop][17] | [![Build and Test][18]][12] | [![since tagged][19]][20] | [![since tagged][21]][22] | [![last commit][23]][24] |
 
 </div>
 
-## What
+## ❔ What
 
 Like hashdeep, but customized to check if any of the original files in a
 repository/directory change over the course of a precommit script.
 
-## Features
+## 🎇 Features
 
 - Can use any sha256sum-like command (uses xxhash by default).
 - Use `.changeguard-ignore` to ignore files that should not be checked for
   changes.
 
-## Install
+## 🔨 Install
 
 ```bash
 # Install from pypi (https://pypi.org/project/changeguard/)
@@ -102,7 +116,7 @@ python -m changeguard.cli \
 <img alt="Output of `python -m changeguard.cli --help`" src="https://raw.githubusercontent.com/realazthat/changeguard/v0.3.1/README.help.generated.svg"/>
 <!-- -->
 
-## Requirements
+## ✅ Requirements
 
 - Python 3.8+
   - Why: Some dev dependencies require Python 3.8+.
@@ -189,7 +203,25 @@ docker run --rm --tty \
 ```
 <!---->
 
-## Contributions
+## 🤏 Versioning
+
+We use SemVer for versioning. For the versions available, see the tags on this
+repository.
+
+## 🔑 License
+
+This project is licensed under the MIT License - see the
+[./LICENSE.md](https://github.com/realazthat/changeguard/blob/v0.3.1/LICENSE.md) file for details.
+
+## 🙏 Thanks
+
+Main libraries used in ChangeGuard are:
+
+- Colorful CLI help: [rich-argparse](https://github.com/hamdanal/rich-argparse).
+- pathspec, for gitignore support:
+  [pathspec](https://github.com/cpburnz/python-pathspec).
+
+## 🫡 Contributions
 
 ### Development environment: Linux-like
 
@@ -234,7 +266,7 @@ docker run --rm --tty \
 5. `git commit -m "..."`.
 6. Make a PR to `develop` (or push to develop if you have the rights).
 
-## Release Process
+## 🔄🚀 Release Process
 
 These instructions are for maintainers of the project.
 
@@ -259,21 +291,27 @@ These instructions are for maintainers of the project.
    `git checkout develop && git merge master`.
 9. Push the develop branch to GitHub: `git push origin develop`.
 
-[1]: https://img.shields.io/badge/Audience-Developers-0A1E1E?style=plastic&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXVzZXJzIj48cGF0aCBkPSJNMTYgMjF2LTJhNCA0IDAgMCAwLTQtNEg2YTQgNCAwIDAgMC00IDR2MiIvPjxjaXJjbGUgY3g9IjkiIGN5PSI3IiByPSI0Ii8+PHBhdGggZD0iTTIyIDIxdi0yYTQgNCAwIDAgMC0zLTMuODciLz48cGF0aCBkPSJNMTYgMy4xM2E0IDQgMCAwIDEgMCA3Ljc1Ii8+PC9zdmc+
-[2]: https://img.shields.io/badge/Platform-Linux-0A1E1E?style=plastic&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxhcHRvcC1taW5pbWFsIj48cmVjdCB3aWR0aD0iMTgiIGhlaWdodD0iMTIiIHg9IjMiIHk9IjQiIHJ4PSIyIiByeT0iMiIvPjxsaW5lIHgxPSIyIiB4Mj0iMjIiIHkxPSIyMCIgeTI9IjIwIi8+PC9zdmc+
-[3]: https://img.shields.io/github/languages/top/realazthat/changeguard.svg?cacheSeconds=28800&style=plastic&color=0A1E1E
-[4]: https://img.shields.io/github/license/realazthat/changeguard?style=plastic&color=0A1E1E
-[5]: https://img.shields.io/pypi/v/changeguard?style=plastic&color=0A1E1E
-[6]: https://pypi.org/project/changeguard/
-[7]: https://img.shields.io/pypi/pyversions/changeguard?style=plastic&color=0A1E1E
-[8]: https://github.com/realazthat/changeguard/actions/workflows/build-and-test.yml/badge.svg?branch=master&style=plastic
-[9]: https://github.com/realazthat/changeguard/actions/workflows/build-and-test.yml?style=plastic
-[10]: https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.1/master?style=plastic
-[11]: https://github.com/realazthat/changeguard/compare/v0.3.1...master
-[12]: https://img.shields.io/github/last-commit/realazthat/changeguard/master?style=plastic
-[13]: https://github.com/realazthat/changeguard/actions/workflows/build-and-test.yml/badge.svg?branch=develop&style=plastic
-[14]: https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.1/develop?style=plastic
-[15]: https://github.com/realazthat/changeguard/compare/v0.3.1...develop
-[16]: https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.1/develop?style=plastic
-[17]: https://github.com/realazthat/changeguard/compare/v0.3.1...develop
-[18]: https://img.shields.io/github/last-commit/realazthat/changeguard/develop?style=plastic
+[1]: https://raw.githubusercontent.com/realazthat/changeguard/v0.3.1/.github/logo-exported.svg
+[2]: https://github.com/realazthat/changeguard
+[3]: https://img.shields.io/badge/Audience-Developers-0A1E1E?style=plastic&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXVzZXJzIj48cGF0aCBkPSJNMTYgMjF2LTJhNCA0IDAgMCAwLTQtNEg2YTQgNCAwIDAgMC00IDR2MiIvPjxjaXJjbGUgY3g9IjkiIGN5PSI3IiByPSI0Ii8+PHBhdGggZD0iTTIyIDIxdi0yYTQgNCAwIDAgMC0zLTMuODciLz48cGF0aCBkPSJNMTYgMy4xM2E0IDQgMCAwIDEgMCA3Ljc1Ii8+PC9zdmc+
+[4]: https://img.shields.io/badge/Platform-Linux-0A1E1E?style=plastic&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxhcHRvcC1taW5pbWFsIj48cmVjdCB3aWR0aD0iMTgiIGhlaWdodD0iMTIiIHg9IjMiIHk9IjQiIHJ4PSIyIiByeT0iMiIvPjxsaW5lIHgxPSIyIiB4Mj0iMjIiIHkxPSIyMCIgeTI9IjIwIi8+PC9zdmc+
+[5]: https://img.shields.io/github/languages/top/realazthat/changeguard.svg?cacheSeconds=28800&style=plastic&color=0A1E1E
+[6]: https://img.shields.io/github/license/realazthat/changeguard?style=plastic&color=0A1E1E
+[7]: https://img.shields.io/pypi/v/changeguard?style=plastic&color=0A1E1E
+[8]: https://pypi.org/project/changeguard/
+[9]: https://img.shields.io/pypi/pyversions/changeguard?style=plastic&color=0A1E1E
+[10]: https://github.com/realazthat/snipinator/tree/master
+[11]: https://github.com/realazthat/changeguard/actions/workflows/build-and-test.yml/badge.svg?branch=master&style=plastic
+[12]: https://github.com/realazthat/changeguard/actions/workflows/build-and-test.yml?style=plastic
+[13]: https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.1/master?style=plastic
+[14]: https://github.com/realazthat/changeguard/compare/v0.3.1...master
+[15]: https://img.shields.io/github/last-commit/realazthat/changeguard/master?style=plastic
+[16]: https://github.com/realazthat/snipinator/commits/master
+[17]: https://github.com/realazthat/snipinator/tree/develop
+[18]: https://github.com/realazthat/changeguard/actions/workflows/build-and-test.yml/badge.svg?branch=develop&style=plastic
+[19]: https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.1/develop?style=plastic
+[20]: https://github.com/realazthat/changeguard/compare/v0.3.1...develop
+[21]: https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.1/develop?style=plastic
+[22]: https://github.com/realazthat/changeguard/compare/v0.3.1...develop
+[23]: https://img.shields.io/github/last-commit/realazthat/changeguard/develop?style=plastic
+[24]: https://github.com/realazthat/snipinator/commits/develop
