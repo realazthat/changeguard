@@ -71,6 +71,14 @@ pip install {{project_name}}
 pip install git+https://github.com/realazthat/{{project_name}}.git@v{{last_stable_release}}
 ```
 
+## 🚜 Usage
+
+<!--{{snippet('./changeguard/examples/hash-audit_example.sh',
+              start='# SNIPPET_START',
+              end='\n# SNIPPET_END',
+              backtickify='bash',
+              decomentify='nl')|trim}}-->
+
 ## 💻 Command Line Options
 
 <!--{{ shell('python -m changeguard.cli --help',
@@ -136,7 +144,7 @@ docker run --rm -it my-{{project_name}}-image --help
 If you want to build the image yourself, you can use the Dockerfile in the
 repository.
 
-<!--{{snippet('./changeguard/examples/local-docker-example.sh',
+<!--{{snippet('./changeguard/examples/local-docker_example.sh',
               start='# DOCKER_START',
               end='# DOCKER_END',
               backtickify='bash',

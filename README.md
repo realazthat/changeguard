@@ -74,6 +74,28 @@ pip install changeguard
 pip install git+https://github.com/realazthat/changeguard.git@v0.3.1
 ```
 
+## 🚜 Usage
+
+<!---->
+```bash
+
+python -m changeguard.cli \
+  hash \
+  --ignorefile ".gitignore" \
+  --ignoreline .trunk --ignoreline .git \
+  --method auto \
+  --tmp-backup-dir ".deleteme/audit-original" \
+  --audit-file ".deleteme/check-changes-audit.yaml" \
+  --directory "."
+
+python -m changeguard.cli \
+  audit \
+  --audit-file ".deleteme/check-changes-audit.yaml" \
+  --show-delta \
+  --directory . 2>&1 | tee ".deleteme/check-changes-audit.log"
+```
+<!---->
+
 ## 💻 Command Line Options
 
 <!---->

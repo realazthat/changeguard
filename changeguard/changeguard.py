@@ -292,7 +292,7 @@ def Hash(*, hash_cmd: str, directory: Path, method: _MethodLiteral,
   if not audit_file_path.parent.exists():
     audit_file_path.parent.mkdir(parents=True, exist_ok=True)
   with audit_file_path.open('w') as audit_file:
-    yaml.safe_dump(audit_dict, audit_file)
+    yaml.safe_dump(audit_dict, audit_file, sort_keys=False)
   console.print('Hashing complete', style='bold green')
 
 
@@ -378,7 +378,7 @@ def TestListPaths(*, directory: Path, ignorefiles: List[TextIO],
         map(str, initial_iterdir_paths.paths))
     dump_dict['git_paths'] = sorted(map(str, git_paths.paths))
     dump_dict['delta'] = sorted(map(str, (delta)))
-    console.print(yaml.safe_dump(dump_dict))
+    console.print(yaml.safe_dump(dump_dict, sort_keys=False))
     console.print('Error: initial_iterdir_paths and git_paths do not match.',
                   style='bold red')
     sys.exit(1)

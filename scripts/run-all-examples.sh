@@ -13,8 +13,7 @@ TOML=${PROJ_PATH}/pyproject.toml EXTRA=prod \
 
 bash scripts/quickrun.sh
 
-# For each sh in changeguard/examples
-find changeguard/examples -type f -name "*.sh" -print0 | while IFS= read -r -d '' EXAMPLE; do
+find changeguard/examples -type f -name "*_example.sh" -print0 | while IFS= read -r -d '' EXAMPLE; do
   bash "${EXAMPLE}"
   echo -e "${GREEN}${EXAMPLE} ran successfully${NC}"
 done
