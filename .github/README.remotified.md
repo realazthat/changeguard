@@ -106,7 +106,7 @@ python -m changeguard.cli \
   audit \
   --audit-file ".deleteme/check-changes-audit.yaml" \
   --show-delta \
-  --directory . 2>&1 | tee ".deleteme/check-changes-audit.log"
+  --directory .
 ```
 <!---->
 
@@ -154,18 +154,7 @@ docker run --rm -it \
   audit \
   --audit-file "${AUDIT_FILE}" \
   --show-delta \
-  --directory "${PROJ_PATH}" 2>&1 | tee "${AUDIT_LOG}"
-```
-
-If you want to build the image yourself, you can use the Dockerfile in the
-repository.
-
-```bash
-# Build the docker image.
-docker build -t my-changeguard-image .
-
-# Run the docker image.
-docker run --rm -it my-changeguard-image --help
+  --directory "${PROJ_PATH}"
 ```
 
 If you want to build the image yourself, you can use the Dockerfile in the
@@ -198,8 +187,7 @@ docker run --rm --tty \
   audit \
   --audit-file ".deleteme/check-changes-audit.yaml" \
   --show-delta \
-  --directory . 2>&1 | tee ".deleteme/check-changes-audit.log"
-
+  --directory .
 ```
 <!---->
 
@@ -301,14 +289,14 @@ These instructions are for maintainers of the project.
 [8]: https://pypi.org/project/changeguard/
 [9]: https://img.shields.io/pypi/pyversions/changeguard?style=plastic&color=0A1E1E
 [10]: https://github.com/realazthat/snipinator/tree/master
-[11]: https://github.com/realazthat/changeguard/actions/workflows/build-and-test.yml/badge.svg?branch=master&style=plastic
-[12]: https://github.com/realazthat/changeguard/actions/workflows/build-and-test.yml?style=plastic
+[11]: https://img.shields.io/github/actions/workflow/status/realazthat/changeguard/build-and-test.yml?branch=master&style=plastic
+[12]: https://github.com/realazthat/changeguard/actions/workflows/build-and-test.yml
 [13]: https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.1/master?style=plastic
 [14]: https://github.com/realazthat/changeguard/compare/v0.3.1...master
 [15]: https://img.shields.io/github/last-commit/realazthat/changeguard/master?style=plastic
 [16]: https://github.com/realazthat/snipinator/commits/master
 [17]: https://github.com/realazthat/snipinator/tree/develop
-[18]: https://github.com/realazthat/changeguard/actions/workflows/build-and-test.yml/badge.svg?branch=develop&style=plastic
+[18]: https://img.shields.io/github/actions/workflow/status/realazthat/changeguard/build-and-test.yml?branch=develop&style=plastic
 [19]: https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.1/develop?style=plastic
 [20]: https://github.com/realazthat/changeguard/compare/v0.3.1...develop
 [21]: https://img.shields.io/github/commits-since/realazthat/changeguard/v0.3.1/develop?style=plastic

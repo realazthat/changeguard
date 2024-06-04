@@ -12,7 +12,7 @@ if [[ -n "${GITHUB_ACTIONS:-}" ]]; then
   exit 0
 fi
 
-# DOCKER_START
+# SNIPPET_START
 # Build the docker image.
 docker build -t my-changeguard-image .
 
@@ -37,5 +37,5 @@ docker run --rm --tty \
   audit \
   --audit-file ".deleteme/check-changes-audit.yaml" \
   --show-delta \
-  --directory . 2>&1 | tee ".deleteme/check-changes-audit.log"
-# DOCKER_END
+  --directory .
+# SNIPPET_END

@@ -18,5 +18,5 @@ python -m changeguard.cli \
   audit \
   --audit-file ".deleteme/check-changes-audit.yaml" \
   --show-delta \
-  --directory . 2>&1 | tee ".deleteme/check-changes-audit.log"
+  --directory .
 # SNIPPET_END
