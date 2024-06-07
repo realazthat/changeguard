@@ -138,7 +138,7 @@ Documentation = "https://github.com/realazthat/changeguard"
 Repository = "https://github.com/realazthat/changeguard"
 
 [tool.changeguard-project-metadata]
-last_unstable_release = "0.3.1"
+last_release = "0.3.1"
 last_stable_release = "0.3.1"
 
 [tool.setuptools]

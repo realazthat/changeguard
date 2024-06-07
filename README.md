@@ -261,9 +261,9 @@ These instructions are for maintainers of the project.
 1. In the `develop` branch, run `bash scripts/pre.sh` to ensure
    everything is in order.
 2. In the `develop` branch, bump the version in `pyproject.toml`,
-   following semantic versioning principles. Also modify the
-   `last_unstable_release` and `last_stable_release` in the
-   `[tool.changeguard-project-metadata]` table as appropriate.
+   following semantic versioning principles. Also modify the `last_release` and
+   `last_stable_release` in the `[tool.changeguard-project-metadata]` table
+   as appropriate.
 3. In the `develop` branch, commit these changes with a message like "Prepare
    release X.Y.Z". (See the contributions section [above](#commit-process)).
 4. Merge the `develop` branch into the `master` branch:
