@@ -5,7 +5,15 @@ set -e -x -v -u -o pipefail
 set +x +v
 
 GRN='\033[0;32m'
+YLW='\033[1;33m'
 NC='\033[0m'
+
+# If we are not in a git repository, then we can't run this test.
+if ! git rev-parse --is-inside-work-tree &>/dev/null; then
+  echo -e "${YLW}Skipping test_list_paths because we are not in a git repository${NC}"
+  exit 0
+fi
+
 
 mkdir -p ".deleteme"
 EXIT_CODE=0
